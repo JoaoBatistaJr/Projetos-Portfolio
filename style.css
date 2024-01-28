@@ -1,0 +1,40 @@
+
+/* Estilo para os cards */
+.repo-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para o título do repositório */
+.repo-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Estilo para a descrição do repositório */
+.repo-description {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Estilo para a linguagem do repositório */
+.repo-language {
+    font-size: 1em;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+/* Estilo para o link do repositório */
+.repo-link {
+    font-size: 1em;
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.repo-link:hover {
+    text-decoration: underline;
+}
