@@ -1,11 +1,17 @@
 
+
+
 /* Estilo para os cards */
 .repo-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: span;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
+    font-family: 'Lexend', sans-serif;
 }
 
 /* Estilo para o título do repositório */
