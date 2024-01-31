@@ -1,17 +1,18 @@
-
-
+/* Estilo para o grid */
+.repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 3 colunas, com tamanho mínimo de 300px */
+    gap: 20px; /* Espaçamento entre os cards */
+}
 
 /* Estilo para os cards */
 .repo-card {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column: span;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 20px;
     background-color: #f9f9f9;
-    font-family: 'Lexend', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilo para o título do repositório */
@@ -27,10 +28,9 @@
     margin-bottom: 5px;
 }
 
-/* Estilo para a linguagem do repositório */
-.repo-language {
+/* Estilo para as linguagens do repositório */
+.repo-languages {
     font-size: 1em;
-    font-style: italic;
     margin-bottom: 5px;
 }
 

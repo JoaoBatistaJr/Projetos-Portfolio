@@ -1,12 +1,16 @@
-// Fazer uma solicitação à API do GitHub
+// Fazer uma solicitação à API do GitHub para buscar os repositórios
 fetch("https://api.github.com/users/joaobatistajr/repos")
   .then((response) => response.json())
   .then((data) => {
-    // Manipular os dados recebidos
     const repositories = document.getElementById("repositories");
-    data.forEach((repo) => {
+    const filteredRepos = data.filter((repo) => {
+      // Exemplo de filtro: exibir apenas repositórios JavaScript
+      return repo.language === "CSS";
+    });
+
+    filteredRepos.forEach((repo) => {
       const repoElement = document.createElement("div");
-      repoElement.classList.add("repo-card"); // Adiciona a classe do card
+      repoElement.classList.add("repo-card");
 
       repoElement.innerHTML = `
                 <h2 class="repo-name">${repo.name}</h2>
