@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import "../styles/globals.css";
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [data, setData] = useState(null);
-
   const [error, setError] = useState(null);
 
   useEffect(() => {
