@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Projetos</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Projetos Portfolio</title>
+
+    <!-- Inclui o CSS do PrismJS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css" rel="stylesheet"/>
+
+    <!-- Inclui o JavaScript do PrismJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
 </head>
 <body>
-    <h1>Meus Projetos</h1>
-    <ul id="repos-list"></ul>
+    <div id="repo-list">
+        <pre><code id="json-output" class="language-json"></code></pre>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,19 +1,15 @@
-async function carregarRepositorios() {
-  try {
-      const response = await fetch("/api/repos");
-      if (!response.ok) throw new Error("Erro ao buscar repositórios");
+fetch('/api/repos')
+  .then(response => response.json())
+  .then(data => {
+    const jsonOutput = document.getElementById("json-output");
 
-      const repos = await response.json();
-      const lista = document.getElementById("repos-list");
+    // Converte o JSON para uma string formatada
+    const prettyJson = JSON.stringify(data, null, 2);
 
-      lista.innerHTML = repos
-          .map(repo => `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
-          .join("");
+    // Exibe o JSON formatado no HTML
+    jsonOutput.textContent = prettyJson;
 
-  } catch (error) {
-      console.error("Erro ao carregar os repositórios:", error);
-  }
-}
-
-// Chama a função ao carregar a página
-window.onload = carregarRepositorios;
+    // Depois que o conteúdo for inserido, o PrismJS vai formatar automaticamente
+    Prism.highlightElement(jsonOutput);
+  })
+  .catch(error => console.error('Erro ao buscar os dados dos repositórios:', error));
