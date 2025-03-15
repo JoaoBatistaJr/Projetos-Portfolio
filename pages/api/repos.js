@@ -1,8 +1,8 @@
-import { writeFile, readFile } from 'fs/promises';
-import path from 'path';
-import fetch from 'node-fetch';
+import { writeFile, readFile } from "fs/promises";
+import path from "path";
+import fetch from "node-fetch";
 
-const JSON_FILE = path.resolve('repos.json');  // Caminho correto para o arquivo de cache
+const JSON_FILE = path.resolve("repos.json");  // Caminho correto para o arquivo de cache
 const GITHUB_API_URL = "https://api.github.com/users/joaobatistajr/repos";
 
 export default async function handler(req, res) {
