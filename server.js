@@ -1,17 +1,15 @@
-import express from "express";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import fetch from "node-fetch";
-
-// Resolver __dirname no ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JSON_FILE = path.join(__dirname, "repos.json");
 const GITHUB_API_URL = "https://api.github.com/users/joaobatistajr/repos";
+
+// Serve arquivos estáticos da pasta "public"
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rota para servir o JSON com os repositórios
 app.get("/api/repos", (req, res) => {
