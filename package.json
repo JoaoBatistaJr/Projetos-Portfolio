@@ -4,9 +4,14 @@
   "description": "Página de projetos que usa a API do GitHub para listar todos os meus repositórios",
   "type": "module",
   "scripts": {
-    "start": "vercel dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "next": "^15.2.2",
+    "node-fetch": "^3.3.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
