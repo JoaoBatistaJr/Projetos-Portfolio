@@ -1,44 +1,38 @@
+import { writeFile, readFile } from "fs/promises";
+import path from "path";
 import fetch from "node-fetch";
-import { kv } from "@vercel/kv"; // Banco de dados da Vercel
 
+const JSON_FILE = path.resolve("/tmp/repos.json");
 const GITHUB_API_URL = "https://api.github.com/users/joaobatistajr/repos";
-const CACHE_KEY = "github_repos";
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 horas
 
 export default async function handler(req, res) {
   try {
-    // Verifica se temos dados salvos no banco da Vercel
-    const cachedData = await kv.get(CACHE_KEY);
+    // Tenta ler o cache salvo no arquivo
+    let cache = await readFile(JSON_FILE, "utf8").catch(() => null);
 
-    if (cachedData) {
-      const { timestamp, repos } = cachedData;
-      const now = Date.now();
-
-      // Se os dados têm menos de 24h, retorna o cache
-      if (now - timestamp < CACHE_DURATION) {
-        console.log("✅ Servindo dados do cache.");
-        return res.status(200).json(repos);
+    if (cache) {
+      let { data, timestamp } = JSON.parse(cache);
+      let umDia = 24 * 60 * 60 * 1000;
+      
+      // Se o cache tem menos de 1 dia, retorna os dados salvos
+      if (Date.now() - timestamp < umDia) {
+        return res.status(200).json(data);
       }
     }
 
-    // Se os dados estão antigos, busca novos do GitHub
-    console.log("🔄 Buscando repositórios do GitHub...");
+    // Se não houver cache ou ele estiver expirado, faz a requisição
     const response = await fetch(GITHUB_API_URL);
-
-    if (!response.ok) {
-      throw new Error(`Erro ao buscar repositórios: ${response.status}`);
-    }
+    if (!response.ok) throw new Error("Erro ao buscar repositórios");
 
     const repos = await response.json();
+    const dataToSave = { data: repos, timestamp: Date.now() };
 
-    // Salva os novos dados no banco da Vercel
-    await kv.set(CACHE_KEY, { timestamp: Date.now(), repos });
+    // Salva os dados no cache
+    await writeFile(JSON_FILE, JSON.stringify(dataToSave, null, 2));
 
-    console.log("✅ Dados atualizados com sucesso!");
     return res.status(200).json(repos);
 
   } catch (error) {
-    console.error("❌ Erro ao obter repositórios:", error);
-    return res.status(500).json({ error: "Erro ao obter repositórios." });
+    return res.status(500).json({ error: "Erro ao buscar os repositórios" });
   }
 }

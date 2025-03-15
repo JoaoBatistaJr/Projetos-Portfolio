@@ -1,18 +1,12 @@
 {
   "name": "projetos-portfolio",
   "version": "1.0.0",
-  "description": "Página de projetos que usa a API do gitHub para listar todos os meus repositórios do github",
-  "main": "script.js",
+  "description": "Página de projetos que usa a API do GitHub para listar todos os meus repositórios",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "vercel dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2",
     "node-fetch": "^3.3.2"
   }
 }
