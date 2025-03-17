@@ -2,22 +2,30 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('/api/repos')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao carregar os repositórios");
+        return response.json();
+      })
       .then(data => setData(data))
-      .catch(error => console.error('Erro ao buscar os dados dos repositórios:', error));
+      .catch(error => setError(error.message));
   }, []);
 
   return (
     <div>
       <h1>Projetos do GitHub</h1>
-      <pre>
-        <code className="language-json">
-          {data ? JSON.stringify(data, null, 2) : 'Carregando...'}
-        </code>
-      </pre>
+      {error ? (
+        <p style={{ color: 'red' }}>Erro: {error}</p>
+      ) : (
+        <pre>
+          <code className="language-json">
+            {data ? JSON.stringify(data, null, 2) : 'Carregando...'}
+          </code>
+        </pre>
+      )}
     </div>
   );
 }
