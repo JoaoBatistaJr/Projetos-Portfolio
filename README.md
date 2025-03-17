@@ -1,7 +1,7 @@
 
 # Projetos Portfolio
 
-Este projeto é um portfólio pessoal desenvolvido para exibir os meus projetos utilizando a API do GitHub. O objetivo é listar meus repositórios de forma interativa, com cache de dados para evitar limitações de requisições da API pública do GitHub.
+Este projeto foi desenvolvido para exibir os meus projetos utilizando a API do GitHub. O objetivo é listar meus repositórios de forma interativa, com cache de dados para evitar limitações de requisições da API pública do GitHub.
 
 ## Funcionalidades
 
